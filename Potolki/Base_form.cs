@@ -1,9 +1,11 @@
 ﻿
+using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -221,13 +223,89 @@ MessageBoxOptions.DefaultDesktopOnly);
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(
-"В данной версии програмного обеспечения этого сделать нельзя!",
+            OpenFileDialog OPF = new OpenFileDialog();
+            OPF.InitialDirectory = System.IO.Path.GetFullPath("..\\Картинки для фотопечати\\");
+            OPF.Filter = "Изображения|*.png|*.jpeg|*.jpg";
+            if (OPF.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    pictureBox1.Image = Image.FromFile(OPF.FileName);
+                }
+                catch
+                {
+                    MessageBox.Show(
+"Фото не загруженно!",
 "Ошибка",
 MessageBoxButtons.OK,
 MessageBoxIcon.Error,
 MessageBoxDefaultButton.Button1,
 MessageBoxOptions.DefaultDesktopOnly);
+                }
+            }
+
+            else
+            {
+                MessageBox.Show(
+    "Изображение не выбрано!",
+    "Внимание",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Warning,
+    MessageBoxDefaultButton.Button1,
+    MessageBoxOptions.DefaultDesktopOnly);
+            }
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkBox1.Checked == true)
+            {
+                pictureBox1.Image = Image.FromFile("..\\Картинки для фотопечати\\многоуровневый потолок.jpg");
+                if(checkBox2.Checked == true)
+                {
+                    pictureBox1.Image = Image.FromFile("..\\Картинки для фотопечати\\потолок фотопечать.jpg");
+                }
+            }
+            else 
+            {
+                pictureBox1.Image = Image.FromFile("..\\Картинки для фотопечати\\глянцевый потолок.jpg");
+                if (checkBox2.Checked == true)
+                {
+                    pictureBox1.Image = Image.FromFile("..\\Картинки для фотопечати\\потолок фотопечать.jpg");
+                }
+            }
+
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            pictureBox1.Image = Image.FromFile("..\\Картинки для фотопечати\\многоуровневый потолок.jpg");
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            pictureBox1.Image = Image.FromFile("..\\Картинки для фотопечати\\потолок фотопечать.jpg");
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == true)
+            {
+                pictureBox1.Image = Image.FromFile("..\\Картинки для фотопечати\\многоуровневый потолок.jpg");
+                if (checkBox2.Checked == true)
+                {
+                    pictureBox1.Image = Image.FromFile("..\\Картинки для фотопечати\\матовый потолок фотопечать.jpg");
+                }
+            }
+            else
+            {
+                pictureBox1.Image = Image.FromFile("..\\Картинки для фотопечати\\матовый потолок фотопечать.jpg");
+                if (checkBox2.Checked == true)
+                {
+                    pictureBox1.Image = Image.FromFile("..\\Картинки для фотопечати\\матовый потолок фотопечать.jpg");
+                }
+            }
         }
     }
 }
