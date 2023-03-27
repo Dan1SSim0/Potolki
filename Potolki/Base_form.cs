@@ -218,7 +218,6 @@ MessageBoxIcon.Error,
 MessageBoxDefaultButton.Button1,
 MessageBoxOptions.DefaultDesktopOnly);
             }
-            
         }
 
         private void button2_Click(object sender, EventArgs e)
