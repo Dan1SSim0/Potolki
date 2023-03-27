@@ -198,9 +198,6 @@ MessageBoxOptions.DefaultDesktopOnly);
                 }
                 catch (Exception ex)
                 {
-                    // Если произошла ошибка, то
-                    // закрываем документ и выводим информацию
-                    //doc.Close();
                     doc = null;
                     Console.WriteLine("Во время выполнения произошол системный сбой пожалуста презапустите приложение!");
                     Console.ReadLine();
